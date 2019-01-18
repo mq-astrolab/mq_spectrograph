@@ -19,7 +19,7 @@ from basic_reduction.extraction import *
 from basic_reduction.process_scripts import process_whites, process_science_images
 
 
-
+#test???
 
 # path to raw fits files
 path = '/Users/christoph/data/mq/raw/'
