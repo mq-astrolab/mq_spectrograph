@@ -10,11 +10,11 @@ import datetime
 import astropy.io.fits as pyfits
 import os
 
-from basic_reduction.helper_functions import fibmodel_with_amp, make_norm_profiles_5, short_filenames, make_norm_single_profile_simu
-from basic_reduction.spatial_profiles import fit_single_fibre_profile
-from basic_reduction.linalg import linalg_extract_column
-from basic_reduction.order_tracing import flatten_single_stripe, flatten_single_stripe_from_indices, extract_stripes
-from basic_reduction.relative_intensities import get_relints
+from helper_functions import fibmodel_with_amp, make_norm_profiles_5, short_filenames, make_norm_single_profile_simu
+from spatial_profiles import fit_single_fibre_profile
+from linalg import linalg_extract_column
+from order_tracing import flatten_single_stripe, flatten_single_stripe_from_indices, extract_stripes
+from relative_intensities import get_relints
 
 
 

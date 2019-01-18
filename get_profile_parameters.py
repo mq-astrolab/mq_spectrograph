@@ -12,7 +12,7 @@ from scipy.signal import savgol_filter
 from scipy import interpolate
 
 
-from basic_reduction.order_tracing import find_stripes, make_P_id, extract_stripes, flatten_single_stripe
+from order_tracing import find_stripes, make_P_id, extract_stripes, flatten_single_stripe
 
 
 

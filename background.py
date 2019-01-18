@@ -10,7 +10,7 @@ import scipy.sparse as sparse
 from scipy.ndimage import label
 import astropy.io.fits as pyfits
 
-from basic_reduction.helper_functions import polyfit2d, polyval2d, fit_poly_surface_2D
+from helper_functions import polyfit2d, polyval2d, fit_poly_surface_2D
 
 
 # #make simulated background

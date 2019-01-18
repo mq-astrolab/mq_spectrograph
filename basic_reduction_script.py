@@ -11,12 +11,12 @@ import numpy as np
 import datetime
 import copy
 
-from basic_reduction.helper_functions import short_filenames
-from basic_reduction.calibration import get_bias_and_readnoise_from_bias_frames, make_offmask_and_ronmask, make_master_bias_from_coeffs, make_master_dark, correct_orientation, crop_overscan_region
-from basic_reduction.order_tracing import find_stripes, make_P_id, make_mask_dict, extract_stripes #, find_tramlines
-from basic_reduction.spatial_profiles import fit_profiles, fit_profiles_from_indices
-from basic_reduction.extraction import *
-from basic_reduction.process_scripts import process_whites, process_science_images
+from helper_functions import short_filenames
+from calibration import get_bias_and_readnoise_from_bias_frames, make_offmask_and_ronmask, make_master_bias_from_coeffs, make_master_dark, correct_orientation, crop_overscan_region
+from order_tracing import find_stripes, make_P_id, make_mask_dict, extract_stripes #, find_tramlines
+from spatial_profiles import fit_profiles, fit_profiles_from_indices
+from extraction import *
+from process_scripts import process_whites, process_science_images
 
 
 #test???
