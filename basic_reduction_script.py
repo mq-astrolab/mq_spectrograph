@@ -10,6 +10,7 @@ import astropy.io.fits as pyfits
 import numpy as np
 import datetime
 import copy
+import matplotlib.pyplot as plt
 
 from helper_functions import short_filenames
 from calibration import get_bias_and_readnoise_from_bias_frames, make_offmask_and_ronmask, make_master_bias_from_coeffs, make_master_dark, correct_orientation, crop_overscan_region
@@ -22,16 +23,16 @@ from process_scripts import process_whites, process_science_images
 #test???
 
 # path to raw fits files
-path = '/Users/christoph/data/mq/raw/'
+path = 'c:\cloudstor\datastore\dataredux\data_for_mq'
 
 
 
 # (0) GET FILE INFO  ################################################################################################################################
 # bias_list = glob.glob(path + 'Bias*.fits')
 # dark_list = glob.glob(path + 'Dark*.fits')
-white_list = glob.glob(path + '*flat*.fit')
-stellar_list = glob.glob(path + '*solar*.fit')
-laser_list = glob.glob(path + '*laser*.fit')
+white_list = glob.glob(path + '\*flat*.fit')
+stellar_list = glob.glob(path + '\*solar*.fit')
+laser_list = glob.glob(path + '\*laser*.fit')
 
 dumimg = pyfits.getdata(stellar_list[0])
 ny,nx = dumimg.shape
