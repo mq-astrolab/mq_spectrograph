@@ -10,6 +10,7 @@ import astropy.io.fits as pyfits
 import numpy as np
 import datetime
 import copy
+import matplotlib.pyplot as plt
 
 from helper_functions import short_filenames
 from calibration import get_bias_and_readnoise_from_bias_frames, make_offmask_and_ronmask, make_master_bias_from_coeffs, make_master_dark, correct_orientation, crop_overscan_region
@@ -66,7 +67,7 @@ gain = [1., 1., 1., 1.]
 # MB = medbias.copy()
 # or
 MB = np.zeros(dumimg.shape)
-ronmask = np.ones(dumimg.shape)
+ronmask = np.ones(dumimg.shape) * 3.
 
 # (ii) DARKS
 # create (bias-subtracted) MASTER DARK frame (units = electrons)
