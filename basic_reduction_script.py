@@ -23,16 +23,16 @@ from process_scripts import process_whites, process_science_images
 #test???
 
 # path to raw fits files
-path = '/Users/christoph/data/mq/raw/'
-
+#path = '/Users/christoph/data/mq/raw/'
+path = 'd:\cloudstor\datastore\dataredux\data_for_mq'
 
 
 # (0) GET FILE INFO  ################################################################################################################################
 # bias_list = glob.glob(path + 'Bias*.fits')
 # dark_list = glob.glob(path + 'Dark*.fits')
-white_list = glob.glob(path + '*flat*.fit')
-stellar_list = glob.glob(path + '*solar*.fit')
-laser_list = glob.glob(path + '*laser*.fit')
+white_list = glob.glob(path + '\*flat*.fit')
+stellar_list = glob.glob(path + '\*solar*.fit')
+laser_list = glob.glob(path + '\*laser*.fit')
 
 dumimg = pyfits.getdata(stellar_list[0])
 ny,nx = dumimg.shape
