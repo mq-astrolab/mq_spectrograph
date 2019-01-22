@@ -291,13 +291,7 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
             pix2,flux2,err2 = extract_spectrum(stripes, err_stripes=err_stripes, ron_stripes=ron_stripes, method=ext_method, slope=slope, offset=offset, fibs=fibs, 
                                                slit_height=slit_height, RON=ronmask, savefile=False, filetype='fits', obsname=obsname, path=path, timit=True)
     
-#         # (7) get relative intensities of different fibres
-#         if from_indices:
-#             relints = get_relints_from_indices(P_id, final_img, err_img, stripe_indices, mask=mask, sampling_size=sampling_size, slit_height=slit_height, return_full=False, timit=True) 
-#         else:
-#             relints = get_relints(P_id, stripes, err_stripes, mask=mask, sampling_size=sampling_size, slit_height=slit_height, return_full=False, timit=True)
-# 
-#     
+
 #         # (8) get wavelength solution
 #         #XXXXX
 

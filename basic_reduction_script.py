@@ -23,16 +23,16 @@ from process_scripts import process_whites, process_science_images
 #test???
 
 # path to raw fits files
-path = 'c:\cloudstor\datastore\dataredux\data_for_mq'
+path = '/Users/christoph/data/mq/raw/'
 
 
 
 # (0) GET FILE INFO  ################################################################################################################################
 # bias_list = glob.glob(path + 'Bias*.fits')
 # dark_list = glob.glob(path + 'Dark*.fits')
-white_list = glob.glob(path + '\*flat*.fit')
-stellar_list = glob.glob(path + '\*solar*.fit')
-laser_list = glob.glob(path + '\*laser*.fit')
+white_list = glob.glob(path + '*flat*.fit')
+stellar_list = glob.glob(path + '*solar*.fit')
+laser_list = glob.glob(path + '*laser*.fit')
 
 dumimg = pyfits.getdata(stellar_list[0])
 ny,nx = dumimg.shape
@@ -67,7 +67,7 @@ gain = [1., 1., 1., 1.]
 # MB = medbias.copy()
 # or
 MB = np.zeros(dumimg.shape)
-ronmask = np.ones(dumimg.shape)
+ronmask = np.ones(dumimg.shape) * 3.
 
 # (ii) DARKS
 # create (bias-subtracted) MASTER DARK frame (units = electrons)

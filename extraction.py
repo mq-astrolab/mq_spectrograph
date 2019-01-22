@@ -14,7 +14,6 @@ from helper_functions import fibmodel_with_amp, make_norm_profiles_5, short_file
 from spatial_profiles import fit_single_fibre_profile
 from linalg import linalg_extract_column
 from order_tracing import flatten_single_stripe, flatten_single_stripe_from_indices, extract_stripes
-#from relative_intensities import get_relints
 
 
 
