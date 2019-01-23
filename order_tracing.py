@@ -621,7 +621,7 @@ def find_tramlines(fp_uu, fp_ul, fp_lu, fp_ll, mask_uu, mask_ul, mask_lu, mask_l
     
     tramlines = {}
     
-    for ord in sorted(fp_uu.iterkeys()):
+    for ord in sorted(fp_uu.keys()):
         uu = np.array(fp_uu[ord]['mu'])
         ul = np.array(fp_ul[ord]['mu'])
         lu = np.array(fp_lu[ord]['mu'])
@@ -685,7 +685,7 @@ def find_laser_tramlines(fp, mask, debug_level=0, timit=False):
     
     tramlines = {}
     
-    for ord in sorted(fp.iterkeys()):
+    for ord in sorted(fp.keys()):
         mu = np.array(fp[ord]['mu'])
         upper_boundary, lower_boundary = find_laser_tramlines_single_order(mu, mask[ord])
         tramlines[ord] = {'upper_boundary':upper_boundary, 'lower_boundary':lower_boundary}

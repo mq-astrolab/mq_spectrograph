@@ -620,7 +620,7 @@ def fit_profiles(P_id, stripes, err_stripes, mask=None, stacking=True, slit_heig
     #create "global" parameter dictionary for entire chip
     fibre_profiles = {}
     #loop over all orders
-    for ord in sorted(P_id.iterkeys()):
+    for ord in sorted(P_id.keys()):
         print('OK, now processing '+str(ord))
         
         ordpol = P_id[ord]
@@ -684,7 +684,7 @@ def fit_profiles_from_indices(P_id, img, err_img, stripe_indices, mask=None, sta
     #create "global" parameter dictionary for entire chip
     fibre_profiles = {}
     #loop over all orders
-    for ord in sorted(P_id.iterkeys()):
+    for ord in sorted(P_id.keys()):
         print('OK, now processing '+str(ord))
         
         ordpol = P_id[ord]
@@ -754,7 +754,7 @@ def make_model_stripes_gausslike(fibre_profiles, flat, err_img, stripe_indices, 
         fitpars = {}
     
     #loop over all orders
-    for ord in sorted(fibre_profiles.iterkeys()):
+    for ord in sorted(fibre_profiles.keys()):
         if debug_level >= 1:
             print('Creating model for ',ord)
             

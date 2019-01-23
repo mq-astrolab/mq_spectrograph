@@ -217,7 +217,7 @@ def make_fibparms_by_fib(savefile=True):
         stripes = extract_stripes(img, P_id, slit_height=10)
     
         fibparms[fib] = {}
-        for ord in sorted(fp.iterkeys()):
+        for ord in sorted(fp.keys()):
             
             fibparms[fib][ord] = {}
             

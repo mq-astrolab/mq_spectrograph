@@ -100,6 +100,8 @@ pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='opt
                                              RON=ronmask, simu=True, savefile=True, filetype='fits', obsname='master_white', path=path, timit=True)
 #####################################################################################################################################################
 
+#test line
+#print(MW_indices)
 
 ###
 #if we want to determine spatial profiles, then we should remove cosmics and background from MW like so:

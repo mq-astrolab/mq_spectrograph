@@ -346,7 +346,7 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
     pix = {}
 
     # loop over all orders
-    for ord in sorted(stripes.iterkeys()):
+    for ord in sorted(stripes.keys()):
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -606,7 +606,7 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
     pix = {}
 
     # loop over all orders
-    for ord in sorted(stripe_indices.iterkeys()):
+    for ord in sorted(stripe_indices.keys()):
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -680,8 +680,8 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
                 print('pixel ' + str(i + 1) + '/' + str(npix))
             pix[ord].append(ordnum + str(i + 1).zfill(4))
             z = sc[:, i].copy()
-            # if simu:
-            #     z -= 1.  # note the minus 1 is because we added 1 artificially at the beginning in order for "extract_stripes" to work properly
+            #if simu:
+            #    z -= 1.  # note the minus 1 is because we added 1 artificially at the beginning in order for "extract_stripes" to work properly
             roncol = ron_sc[:, i].copy()
 
             # if error is not provided, estimate it here (NOT RECOMMENDED!!!)

@@ -171,7 +171,7 @@ def get_RV_from_xcorr(f, err, wl, f0, wl0, mask=None, smoothed_flat=None, osf=2,
     rverr = {}
     
     #loop over orders
-    for ord in sorted(f.iterkeys()):
+    for ord in sorted(f.keys()):
         
         if debug_level >= 1:
             print(ord)
@@ -519,7 +519,7 @@ def make_ccfs(f, wl, f0, wl0, mask=None, smoothed_flat=None, delta_log_wl=1e-6, 
     xcs = []
 
     # loop over orders
-    # for ord in sorted(f.iterkeys()):
+    # for ord in sorted(f.keys()):
     # for o in range(wl.shape[0]):
     # from Brendan's plots/table:
     # for o in [5, 6, 7, 17, 26, 27, 34, 35, 36, 37]:
@@ -682,7 +682,7 @@ def make_self_indfib_ccfs(f, wl, relto=9, mask=None, smoothed_flat=None, delta_l
     xcs = []
 
     # loop over orders
-    # for ord in sorted(f.iterkeys()):
+    # for ord in sorted(f.keys()):
     # for o in range(wl.shape[0]):
     # for o in [4,5,6,25,26,33,34,35]:
     for o in [5, 6, 17, 25, 26, 27, 31, 34, 35, 36, 37]:

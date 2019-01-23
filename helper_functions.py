@@ -720,7 +720,7 @@ def find_blaze_peaks(flux,P_id):
     medfiltered = {}
     rough_peaks = {}
     peaks = {}
-    for o in sorted(P_id.iterkeys()):
+    for o in sorted(P_id.keys()):
         medfiltered[o] = signal.medfilt(flux[o],9)
         rough_peaks[o] = np.mean(xx[medfiltered[o] == np.max(medfiltered[o])])   # need mean if there is more than one index where flux is max
         ix = rough_peaks[o].astype(int)

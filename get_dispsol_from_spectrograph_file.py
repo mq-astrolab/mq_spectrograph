@@ -109,7 +109,7 @@ def make_mean_dispsol(degpol=5, savefile=False, outfn = '/Users/christoph/OneDri
         for i in range(len(dbo[ord]['fiber_1']['x'])):
             xarr = []
             yarr = []
-            for fibkey in sorted(dbo[ord].iterkeys()):
+            for fibkey in sorted(dbo[ord].keys()):
                 dum = fibkey[-2:]
                 try:
                     fibnum = int(dum)
