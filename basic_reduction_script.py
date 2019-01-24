@@ -94,7 +94,7 @@ np.save(path + 'P_id.npy', P_id)
 
 # extract stripes of user-defined width from the science image, centred on the polynomial fits defined in step (1)
 MW_stripes,MW_indices = extract_stripes(MW, P_id, return_indices=True, slit_height=7)
-pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='quick', slit_height=7, RON=ronmask,
+pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='quick', slit_height=7, RON=ronmask, simu=True,
                                              savefile=True, filetype='fits', obsname='master_white', path=path, timit=True)
 pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='optimal', slope=False, offset=False, fibs='single', fibpos='05', slit_height=7,
                                              RON=ronmask, simu=True, savefile=True, filetype='fits', obsname='master_white', path=path, timit=True)
@@ -124,8 +124,8 @@ pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='opt
 
 
 # (4) PROCESS SCIENCE IMAGES
-dum = (stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB, ronmask=ronmask, MD=MDS, scalable=True,
-                             saveall=False, path=path, ext_method='optimal', offset='True', slope='True', fibs='stellar', from_indices=True, timit=True)
+dum = process_science_images(stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB, ronmask=ronmask, MD=MDS, scalable=True,
+                             saveall=False, path=path, ext_method='optimal', offset='True', slope='True', fibs='single', from_indices=True, timit=True)
 
 
 
