@@ -340,7 +340,7 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/first_real_veloce_test_fps.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/from_master_white_40orders.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20180925.npy').item()
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20181107.npy').item()
+        fibparms = np.load('D:\\cloudstor\\codestore\\dataredux\\mq_spectrograph\\data\\fibparms_by_ord.npy', encoding= 'latin1').item()
     flux = {}
     err = {}
     pix = {}
@@ -599,7 +599,7 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/from_master_white_40orders.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20180925.npy').item()
         print('Oha! Loading NEWest fibre profile parameters...')
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20181107.npy').item()
+        fibparms = np.load('D:\\cloudstor\\codestore\\dataredux\\mq_spectrograph\\data\\fibparms_by_ord.npy', encoding= 'latin1').item()
 
     flux = {}
     err = {}
