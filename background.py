@@ -66,45 +66,45 @@ def remove_background(img, P_id, obsname, path, degpol=5, slit_height=25, save_b
     
     #save background image
     if save_bg:
-        outfn = obsname+'_BG_img.fits'
+        outfn = path+obsname+'_BG_img.fits'
         #get header from the BIAS- & DARK-subtracted & cosmic-ray corrected image if it exists
         try:
-            h = pyfits.getheader(obsname+'_BD_CR.fits')
+            h = pyfits.getheader(path+obsname+'_BD_CR.fits')
         except:
             #otherwise try to get header from the BIAS- & DARK-subtracted image; otherwise from the original image FITS file
             try: 
-                h = pyfits.getheader(obsname+'_BD.fits')
+                h = pyfits.getheader(path+obsname+'_BD.fits')
             except:
-                h = pyfits.getheader(obsname+'.fits')
+                h = pyfits.getheader(path+obsname+'.fits')
                 h['UNITS'] = 'ELECTRONS'
         h['HISTORY'] = '   BACKGROUND image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
         pyfits.writeto(outfn, bg_img, h, clobber=True)
         
     #save background-corrected image
     if savefile:
-        outfn = obsname+'_BD_CR_BG.fits'
+        outfn = path+obsname+'_BD_CR_BG.fits'
         #get header from the BIAS- & DARK-subtracted & cosmic-ray corrected image if it exists
         try:
-            h = pyfits.getheader(obsname+'_BD_CR.fits')
+            h = pyfits.getheader(path+obsname+'_BD_CR.fits')
         except:
             #otherwise try to get header from the BIAS- & DARK-subtracted image; otherwise from the original image FITS file
             try: 
-                h = pyfits.getheader(obsname+'_BD.fits')
+                h = pyfits.getheader(path+obsname+'_BD.fits')
             except:
-                h = pyfits.getheader(obsname+'.fits')
+                h = pyfits.getheader(path+obsname+'.fits')
                 h['UNITS'] = 'ELECTRONS'
         h['HISTORY'] = '   BACKGROUND-corrected image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
         pyfits.writeto(outfn, corrected_image, h, clobber=True)
         #also save the error array if desired
         if save_err:
             try:
-                err = pyfits.getdata(obsname+'_BD_CR.fits', 1)
+                err = pyfits.getdata(path+obsname+'_BD_CR.fits', 1)
                 h_err = h.copy()
                 h_err['HISTORY'] = 'estimated uncertainty in BACKGROUND-corrected image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 pyfits.append(outfn, err, h_err, clobber=True)
             except:
                 try:
-                    err = pyfits.getdata(obsname+'_BD.fits', 1)
+                    err = pyfits.getdata(path+obsname+'_BD.fits', 1)
                     h_err = h.copy()
                     h_err['HISTORY'] = 'estimated uncertainty in BACKGROUND-corrected image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                     pyfits.append(outfn, err, h_err, clobber=True)
