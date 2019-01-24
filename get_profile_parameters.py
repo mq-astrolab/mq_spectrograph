@@ -196,8 +196,8 @@ def old_make_real_fibparms_by_ord(fp_in, savefile=True, degpol=6):
 def make_fibparms_by_fib(savefile=True):
 
     path = '/Users/christoph/OneDrive - UNSW/fibre_profiles/'
-    fp_files = glob.glob(path+"sim/"+"fibre_profiles*.npy")
-    #mask_files = glob.glob(path+"masks/"+"mask*.npy")
+    fp_files = glob.glob("sim/"+"fibre_profiles*.npy")
+    #mask_files = glob.glob("masks/"+"mask*.npy")
     
     fibparms = {}
     
@@ -205,7 +205,7 @@ def make_fibparms_by_fib(savefile=True):
         fibnum = file[-6:-4]
         fib = 'fibre_'+fibnum
         fp = np.load(file).item()
-        mask = np.load(path+"masks/"+"mask_"+fibnum+".npy").item()
+        mask = np.load("masks/"+"mask_"+fibnum+".npy").item()
         flatname = '/Volumes/BERGRAID/data/simu/veloce_flat_t70000_single_fib'+fibnum+'.fit'
         flat = pyfits.getdata(flatname)
         img = flat + 1.

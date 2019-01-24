@@ -63,19 +63,19 @@ def process_whites(white_list, MB=None, ronmask=None, MD=None, gain=None, scalab
         path = white_list[0][0:-len(dum[-1])]
     if MB is None:
         #no need to fix orientation, this is already a processed file [ADU]
-        MB = pyfits.getdata(path+'master_bias.fits')
+        MB = pyfits.getdata('master_bias.fits')
     if ronmask is None:
         #no need to fix orientation, this is already a processed file [e-]
-        ronmask = pyfits.getdata(path+'read_noise_mask.fits')
+        ronmask = pyfits.getdata('read_noise_mask.fits')
     if MD is None:
         if scalable:
             #no need to fix orientation, this is already a processed file [e-]
-            MD = pyfits.getdata(path+'master_dark_scalable.fits', 0)
-#             err_MD = pyfits.getdata(path+'master_dark_scalable.fits', 1)
+            MD = pyfits.getdata('master_dark_scalable.fits', 0)
+#             err_MD = pyfits.getdata('master_dark_scalable.fits', 1)
         else:
             #no need to fix orientation, this is already a processed file [e-]
-            MD = pyfits.getdata(path+'master_dark_t'+str(int(np.round(texp,0)))+'.fits', 0)
-#             err_MD = pyfits.getdata(path+'master_dark_t'+str(int(np.round(texp,0)))+'.fits', 1)
+            MD = pyfits.getdata('master_dark_t'+str(int(np.round(texp,0)))+'.fits', 0)
+#             err_MD = pyfits.getdata('master_dark_t'+str(int(np.round(texp,0)))+'.fits', 1)
 
 
     #prepare arrays
@@ -165,7 +165,7 @@ def process_whites(white_list, MB=None, ronmask=None, MD=None, gain=None, scalab
 
     #now save master white to file
     if savefile:
-        outfn = path+'master_white.fits'
+        outfn = 'master_white.fits'
         pyfits.writeto(outfn, master, clobber=True)
         pyfits.setval(outfn, 'HISTORY', value='   MASTER WHITE frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
         # pyfits.setval(outfn, 'EXPTIME', value=texp, comment='exposure time [s]')
@@ -183,7 +183,7 @@ def process_whites(white_list, MB=None, ronmask=None, MD=None, gain=None, scalab
     if diffimg:
         hdiff = h.copy()
         hdiff['HISTORY'] = '   MASTER WHITE DIFFERENCE IMAGE - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
-        pyfits.writeto(path+'master_white_diffimg.fits', diff, hdiff, clobber=True)
+        pyfits.writeto('master_white_diffimg.fits', diff, hdiff, clobber=True)
 
     if timit:
         print('Total time elapsed: '+str(np.round(time.time() - start_time,1))+' seconds')
@@ -226,19 +226,19 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
         path = imglist[0][0:-len(dum[-1])]
     if MB is None:
         #no need to fix orientation, this is already a processed file [ADU]
-        MB = pyfits.getdata(path+'master_bias.fits')
+        MB = pyfits.getdata('master_bias.fits')
     if ronmask is None:
         #no need to fix orientation, this is already a processed file [e-]
-        ronmask = pyfits.getdata(path+'read_noise_mask.fits')
+        ronmask = pyfits.getdata('read_noise_mask.fits')
     if MD is None:
         if scalable:
             #no need to fix orientation, this is already a processed file [e-]
-            MD = pyfits.getdata(path+'master_dark_scalable.fits', 0)
-#             err_MD = pyfits.getdata(path+'master_dark_scalable.fits', 1)
+            MD = pyfits.getdata('master_dark_scalable.fits', 0)
+#             err_MD = pyfits.getdata('master_dark_scalable.fits', 1)
         else:
             #no need to fix orientation, this is already a processed file [e-]
-            MD = pyfits.getdata(path+'master_dark_t'+str(int(np.round(texp,0)))+'.fits', 0)
-#             err_MD = pyfits.getdata(path+'master_dark_t'+str(int(np.round(texp,0)))+'.fits', 1)
+            MD = pyfits.getdata('master_dark_t'+str(int(np.round(texp,0)))+'.fits', 0)
+#             err_MD = pyfits.getdata('master_dark_t'+str(int(np.round(texp,0)))+'.fits', 1)
     
     if not from_indices:
         ron_stripes = extract_stripes(ronmask, P_id, return_indices=False, slit_height=slit_height, savefiles=False, timit=True)

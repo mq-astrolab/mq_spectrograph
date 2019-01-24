@@ -315,9 +315,9 @@ def get_bias_and_readnoise_from_bias_frames(bias_list, degpol=5, clip=5, gain=No
         dum = bias_list[0].split('/')
         path = bias_list[0][0:-len(dum[-1])]
         #write median bias image to file
-        pyfits.writeto(path+'median_bias.fits', medimg, clobber=True)
-        pyfits.setval(path+'median_bias.fits', 'UNITS', value='ADU')
-        pyfits.setval(path+'median_bias.fits', 'HISTORY', value='   master BIAS frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
+        pyfits.writeto('median_bias.fits', medimg, clobber=True)
+        pyfits.setval('median_bias.fits', 'UNITS', value='ADU')
+        pyfits.setval('median_bias.fits', 'HISTORY', value='   master BIAS frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
 
     return medimg,coeffs,offsets,rons
 
@@ -376,43 +376,43 @@ def make_offmask_and_ronmask(offsets, rons, nx, ny, gain=None, savefiles=False, 
             return
         else:
             #write offmask to file
-            pyfits.writeto(path+'offmask.fits', offmask, clobber=True)
-            pyfits.setval(path+'offmask.fits', 'UNITS', value='ADU')
-            pyfits.setval(path+'offmask.fits', 'HISTORY', value='   offset mask - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
+            pyfits.writeto('offmask.fits', offmask, clobber=True)
+            pyfits.setval('offmask.fits', 'UNITS', value='ADU')
+            pyfits.setval('offmask.fits', 'HISTORY', value='   offset mask - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
             if nq == 1:
-                pyfits.setval(path+'offmask.fits', 'OFFSET', value=offsets, comment='in ADU')
-                pyfits.setval(path+'offmask.fits', 'RNOISE', value=rons, comment='in ELECTRONS')
+                pyfits.setval('offmask.fits', 'OFFSET', value=offsets, comment='in ADU')
+                pyfits.setval('offmask.fits', 'RNOISE', value=rons, comment='in ELECTRONS')
             elif nq == 4:
-                pyfits.setval(path+'offmask.fits', 'OFFSET_1', value=offsets[0], comment='in ADU')
-                pyfits.setval(path+'offmask.fits', 'OFFSET_2', value=offsets[1], comment='in ADU')
-                pyfits.setval(path+'offmask.fits', 'OFFSET_3', value=offsets[2], comment='in ADU')
-                pyfits.setval(path+'offmask.fits', 'OFFSET_4', value=offsets[3], comment='in ADU')
-                pyfits.setval(path+'offmask.fits', 'RNOISE_1', value=rons[0], comment='in ELECTRONS')
-                pyfits.setval(path+'offmask.fits', 'RNOISE_2', value=rons[1], comment='in ELECTRONS')
-                pyfits.setval(path+'offmask.fits', 'RNOISE_3', value=rons[2], comment='in ELECTRONS')
-                pyfits.setval(path+'offmask.fits', 'RNOISE_4', value=rons[3], comment='in ELECTRONS')
+                pyfits.setval('offmask.fits', 'OFFSET_1', value=offsets[0], comment='in ADU')
+                pyfits.setval('offmask.fits', 'OFFSET_2', value=offsets[1], comment='in ADU')
+                pyfits.setval('offmask.fits', 'OFFSET_3', value=offsets[2], comment='in ADU')
+                pyfits.setval('offmask.fits', 'OFFSET_4', value=offsets[3], comment='in ADU')
+                pyfits.setval('offmask.fits', 'RNOISE_1', value=rons[0], comment='in ELECTRONS')
+                pyfits.setval('offmask.fits', 'RNOISE_2', value=rons[1], comment='in ELECTRONS')
+                pyfits.setval('offmask.fits', 'RNOISE_3', value=rons[2], comment='in ELECTRONS')
+                pyfits.setval('offmask.fits', 'RNOISE_4', value=rons[3], comment='in ELECTRONS')
 
             #now make read-out noise mask
-            pyfits.writeto(path+'read_noise_mask.fits', ronmask, clobber=True)
-            pyfits.setval(path+'read_noise_mask.fits', 'UNITS', value='ELECTRONS')
-            pyfits.setval(path+'read_noise_mask.fits', 'HISTORY', value='   read-noise frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
+            pyfits.writeto('read_noise_mask.fits', ronmask, clobber=True)
+            pyfits.setval('read_noise_mask.fits', 'UNITS', value='ELECTRONS')
+            pyfits.setval('read_noise_mask.fits', 'HISTORY', value='   read-noise frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
             if nq == 1:
-                pyfits.setval(path+'read_noise_mask.fits', 'OFFSET', value=offsets, comment='in ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'GAIN', value=gain, comment='in e-/ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'RNOISE', value=rons, comment='in ELECTRONS')
+                pyfits.setval('read_noise_mask.fits', 'OFFSET', value=offsets, comment='in ADU')
+                pyfits.setval('read_noise_mask.fits', 'GAIN', value=gain, comment='in e-/ADU')
+                pyfits.setval('read_noise_mask.fits', 'RNOISE', value=rons, comment='in ELECTRONS')
             elif nq == 4:
-                pyfits.setval(path+'read_noise_mask.fits', 'OFFSET_1', value=offsets[0], comment='in ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'OFFSET_2', value=offsets[1], comment='in ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'OFFSET_3', value=offsets[2], comment='in ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'OFFSET_4', value=offsets[3], comment='in ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'RNOISE_1', value=rons[0], comment='in ELECTRONS')
-                pyfits.setval(path+'read_noise_mask.fits', 'RNOISE_2', value=rons[1], comment='in ELECTRONS')
-                pyfits.setval(path+'read_noise_mask.fits', 'RNOISE_3', value=rons[2], comment='in ELECTRONS')
-                pyfits.setval(path+'read_noise_mask.fits', 'RNOISE_4', value=rons[3], comment='in ELECTRONS')
-                pyfits.setval(path+'read_noise_mask.fits', 'GAIN_1', value=gain[0], comment='in e-/ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'GAIN_2', value=gain[1], comment='in e-/ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'GAIN_3', value=gain[2], comment='in e-/ADU')
-                pyfits.setval(path+'read_noise_mask.fits', 'GAIN_4', value=gain[3], comment='in e-/ADU')
+                pyfits.setval('read_noise_mask.fits', 'OFFSET_1', value=offsets[0], comment='in ADU')
+                pyfits.setval('read_noise_mask.fits', 'OFFSET_2', value=offsets[1], comment='in ADU')
+                pyfits.setval('read_noise_mask.fits', 'OFFSET_3', value=offsets[2], comment='in ADU')
+                pyfits.setval('read_noise_mask.fits', 'OFFSET_4', value=offsets[3], comment='in ADU')
+                pyfits.setval('read_noise_mask.fits', 'RNOISE_1', value=rons[0], comment='in ELECTRONS')
+                pyfits.setval('read_noise_mask.fits', 'RNOISE_2', value=rons[1], comment='in ELECTRONS')
+                pyfits.setval('read_noise_mask.fits', 'RNOISE_3', value=rons[2], comment='in ELECTRONS')
+                pyfits.setval('read_noise_mask.fits', 'RNOISE_4', value=rons[3], comment='in ELECTRONS')
+                pyfits.setval('read_noise_mask.fits', 'GAIN_1', value=gain[0], comment='in e-/ADU')
+                pyfits.setval('read_noise_mask.fits', 'GAIN_2', value=gain[1], comment='in e-/ADU')
+                pyfits.setval('read_noise_mask.fits', 'GAIN_3', value=gain[2], comment='in e-/ADU')
+                pyfits.setval('read_noise_mask.fits', 'GAIN_4', value=gain[3], comment='in e-/ADU')
 
     if timit:
         print('Time elapsed: '+str(np.round(time.time() - start_time,1))+' seconds')
@@ -477,14 +477,14 @@ def make_master_bias_from_coeffs(coeffs, nx, ny, savefile=False, path=None, timi
             return
         else:
             #get header from the read-noise mask file
-            h = pyfits.getheader(path+'read_noise_mask.fits')
+            h = pyfits.getheader('read_noise_mask.fits')
             #change a few things
             for i in range(1,5):
                 del h['offset_'+str(i)]
             h['UNITS'] = 'ADU'
             h['HISTORY'][0] = ('   master BIAS frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
             #write master bias to file
-            pyfits.writeto(path+'master_bias.fits', master_bias, h, clobber=True)
+            pyfits.writeto('master_bias.fits', master_bias, h, clobber=True)
     
     
     if timit:
@@ -609,9 +609,9 @@ def make_master_dark(dark_list, MB, gain=None, scalable=False, savefile=True, pa
             dum = dark_list[0].split('/')
             path = dark_list[0][0:-len(dum[-1])]
         if scalable:
-            outfn = path+'master_dark_scalable.fits'
+            outfn = 'master_dark_scalable.fits'
             #get header from master BIAS frame
-            h = pyfits.getheader(path+'master_bias.fits')
+            h = pyfits.getheader('master_bias.fits')
             h['HISTORY'][0] = '   MASTER DARK frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
             h['UNITS'] = 'ELECTRONS'
             h['COMMENT'] = 're-normalized to texp=1s to make it scalable'
@@ -619,9 +619,9 @@ def make_master_dark(dark_list, MB, gain=None, scalable=False, savefile=True, pa
             pyfits.writeto(outfn, MD, h, clobber=True)
         else:
             for i,submd in enumerate(MD):
-                outfn = path+'master_dark_t'+str(int(unique_exp_times[i]))+'.fits'
+                outfn = 'master_dark_t'+str(int(unique_exp_times[i]))+'.fits'
                 #get header from master BIAS frame
-                h = pyfits.getheader(path+'master_bias.fits')
+                h = pyfits.getheader('master_bias.fits')
                 h['HISTORY'][0] = '   MASTER DARK frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 h['TOTALEXP'] = (unique_exp_times[i], 'exposure time [s]')
                 h['UNITS'] = 'ELECTRONS'
@@ -763,8 +763,8 @@ def correct_for_bias_and_dark_from_filename(imgname, MB, MD, gain=None, scalable
             print('WARNING: output file directory not provided!!!')
             print('Using same directory as input file...')
             path = imgname[0:-len(dum[-1])]
-        #outfn = path+shortname+'_bias_and_dark_corrected.fits'
-        outfn = path+shortname+'_BD.fits'
+        #outfn = shortname+'_bias_and_dark_corrected.fits'
+        outfn = shortname+'_BD.fits'
         #get header from the original image FITS file
         h = pyfits.getheader(imgname)
         h['UNITS'] = 'ELECTRONS'
