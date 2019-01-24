@@ -69,30 +69,30 @@ def remove_cosmics(img, ronmask, obsname, path, Flim=3.0, siglim=5.0, maxiter=20
     
     #save cosmic-ray mask
     if savemask:
-        outfn = path+obsname+'_CR_mask.fits'
+        outfn = obsname+'_CR_mask.fits'
         #get header from the BIAS- & DARK-subtracted image if it exits; otherwise from the original image FITS file
         try:
-            h = pyfits.getheader(path+obsname+'_BD.fits')
+            h = pyfits.getheader(obsname+'_BD.fits')
         except:
-            h = pyfits.getheader(path+obsname+'.fits')
+            h = pyfits.getheader(obsname+'.fits')
         h['HISTORY'] = '   (boolean) COSMIC-RAY MASK- created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
         pyfits.writeto(outfn, global_mask.astype(int), h, clobber=True)
     
     #save cosmic-ray corrected image    
     if savefile:
-        outfn = path+obsname+'_BD_CR.fits'
+        outfn = obsname+'_BD_CR.fits'
         #get header from the BIAS- & DARK-subtracted images if they exit; otherwise from the original image FITS file
         try:
-            h = pyfits.getheader(path+obsname+'_BD.fits')
+            h = pyfits.getheader(obsname+'_BD.fits')
         except:
-            h = pyfits.getheader(path+obsname+'.fits')
+            h = pyfits.getheader(obsname+'.fits')
             h['UNITS'] = 'ELECTRONS'
         h['HISTORY'] = '   COSMIC-RAY corrected image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
         pyfits.writeto(outfn, cleaned, h, clobber=True)
         #also save the error array if desired
         if save_err:
             try:
-                err = pyfits.getdata(path+obsname+'_BD.fits', 1)
+                err = pyfits.getdata(obsname+'_BD.fits', 1)
                 h_err = h.copy()
                 h_err['HISTORY'] = 'estimated uncertainty in COSMIC-RAY corrected image - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 pyfits.append(outfn, err, h_err, clobber=True)

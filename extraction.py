@@ -943,7 +943,7 @@ def extract_spectrum(stripes, err_stripes, ron_stripes, method='optimal', indivi
             
         # name of object
         try:
-            starname = pyfits.getval(path+obsname+'.fits', 'OBJECT')
+            starname = pyfits.getval(obsname+'.fits', 'OBJECT')
         except:
             starname = ''
                      
@@ -964,16 +964,16 @@ def extract_spectrum(stripes, err_stripes, ron_stripes, method='optimal', indivi
                     fluxarr[i,:] = flux[o]
                     errarr[i,:] = err[o]
                 # try and get header from previously saved files
-                if os.path.exists(path+obsname+'_BD_CR_BG_FF.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR_BG_FF.fits')
-                elif os.path.exists(path+obsname+'_BD_CR_BG.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR_BG.fits')
-                elif os.path.exists(path+obsname+'_BD_CR.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR.fits')
-                elif os.path.exists(path+obsname+'_BD.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD.fits')
+                if os.path.exists(obsname+'_BD_CR_BG_FF.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR_BG_FF.fits')
+                elif os.path.exists(obsname+'_BD_CR_BG.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR_BG.fits')
+                elif os.path.exists(obsname+'_BD_CR.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR.fits')
+                elif os.path.exists(obsname+'_BD.fits'):
+                    h = pyfits.getheader(obsname+'_BD.fits')
                 else:
-                    h = pyfits.getheader(path+obsname+'.fits')   
+                    h = pyfits.getheader(obsname+'.fits')   
                 #update the header and write to file
                 h['HISTORY'] = '   EXTRACTED SPECTRUM - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 h['METHOD'] = (method, 'extraction method used')
@@ -1109,7 +1109,7 @@ def extract_spectrum_from_indices(img, err_img, stripe_indices, method='optimal'
         
         # name of object
         try:
-            starname = pyfits.getval(path+obsname+'.fits', 'OBJECT')
+            starname = pyfits.getval(obsname+'.fits', 'OBJECT')
         except:
             starname = ''
                     
@@ -1138,16 +1138,16 @@ def extract_spectrum_from_indices(img, err_img, stripe_indices, method='optimal'
                         fluxarr[i,:] = flux[o]
                         errarr[i,:] = err[o]
                 # try and get header from previously saved files
-                if os.path.exists(path+obsname+'_BD_CR_BG_FF.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR_BG_FF.fits')
-                elif os.path.exists(path+obsname+'_BD_CR_BG.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR_BG.fits')
-                elif os.path.exists(path+obsname+'_BD_CR.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD_CR.fits')
-                elif os.path.exists(path+obsname+'_BD.fits'):
-                    h = pyfits.getheader(path+obsname+'_BD.fits')
+                if os.path.exists(obsname+'_BD_CR_BG_FF.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR_BG_FF.fits')
+                elif os.path.exists(obsname+'_BD_CR_BG.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR_BG.fits')
+                elif os.path.exists(obsname+'_BD_CR.fits'):
+                    h = pyfits.getheader(obsname+'_BD_CR.fits')
+                elif os.path.exists(obsname+'_BD.fits'):
+                    h = pyfits.getheader(obsname+'_BD.fits')
                 else:
-                    h = pyfits.getheader(path+obsname+'.fits')   
+                    h = pyfits.getheader(obsname+'.fits')   
                 #update the header and write to file
                 h['HISTORY'] = '   EXTRACTED SPECTRUM - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 h['METHOD'] = (method, 'extraction method used')
