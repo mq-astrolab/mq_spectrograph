@@ -124,7 +124,7 @@ pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='opt
 
 
 # (4) PROCESS SCIENCE IMAGES
-dum = process_science_images(stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB, ronmask=ronmask, MD=MDS, scalable=True,
+dum = (stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB, ronmask=ronmask, MD=MDS, scalable=True,
                              saveall=False, path=path, ext_method='optimal', offset='True', slope='True', fibs='stellar', from_indices=True, timit=True)
 
 
