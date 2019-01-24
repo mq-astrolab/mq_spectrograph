@@ -68,13 +68,13 @@ def make_median_image(imglist, MB=None, scalable=False, raw=False):
 def make_quadrant_masks(nx, ny):
     # define four quadrants via masks
     q1 = np.zeros((ny, nx), dtype='bool')
-    q1[:(ny / 2), :(nx / 2)] = True
+    q1[:int(ny / 2), :int(nx / 2)] = True
     q2 = np.zeros((ny, nx), dtype='bool')
-    q2[:(ny / 2), (nx / 2):] = True
+    q2[:int(ny / 2), int(nx / 2):] = True
     q3 = np.zeros((ny, nx), dtype='bool')
-    q3[(ny / 2):, (nx / 2):] = True
+    q3[int(ny / 2):, int(nx / 2):] = True
     q4 = np.zeros((ny, nx), dtype='bool')
-    q4[(ny / 2):, :(nx / 2)] = True
+    q4[int(ny / 2):, :int(nx / 2)] = True
 
     return q1, q2, q3, q4
 
@@ -734,8 +734,8 @@ def correct_for_bias_and_dark_from_filename(imgname, MB, MD, gain=None, scalable
     #(2) conversion to ELECTRONS and DARK SUBTRACTION [e-]
     #if the darks have a different exposure time than the images you are trying to correct, we need to re-scale the master dark
     if scalable:
-        # texp = pyfits.getval(imgname, 'exptime')
-        texp = pyfits.getval(imgname, 'TOTALEXP')
+        texp = pyfits.getval(imgname, 'exptime')
+        #texp = pyfits.getval(imgname, 'TOTALEXP')
         if texp is not None:
             MD = MD * texp
 #             #cannot have an error estimate lower than the read-out noise; this is dodgy but don't know what else to do
