@@ -253,7 +253,7 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
         obsname = dum2[0]
               
         # (1) call routine that does all the bias and dark correction stuff and proper error treatment
-        img = correct_for_bias_and_dark_from_filename(filename, MB, MD, gain=gain, scalable=scalable, savefile=saveall, path=path, timit=True)   #[e-]
+        img = correct_for_bias_and_dark_from_filename(filename, MB, MD, gain=gain, scalable=scalable, savefile=saveall, path=path, simu=True, timit=True)   #[e-]
         #err = np.sqrt(img + ronmask*ronmask)   # [e-]
         #TEMPFIX:
         err_img = np.sqrt(np.clip(img,0,None) + ronmask*ronmask)   # [e-]
