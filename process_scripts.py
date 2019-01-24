@@ -165,7 +165,7 @@ def process_whites(white_list, MB=None, ronmask=None, MD=None, gain=None, scalab
 
     #now save master white to file
     if savefile:
-        outfn = 'master_white.fits'
+        outfn = path+'master_white.fits'
         pyfits.writeto(outfn, master, clobber=True)
         pyfits.setval(outfn, 'HISTORY', value='   MASTER WHITE frame - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)')
         # pyfits.setval(outfn, 'EXPTIME', value=texp, comment='exposure time [s]')
@@ -183,7 +183,7 @@ def process_whites(white_list, MB=None, ronmask=None, MD=None, gain=None, scalab
     if diffimg:
         hdiff = h.copy()
         hdiff['HISTORY'] = '   MASTER WHITE DIFFERENCE IMAGE - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
-        pyfits.writeto('master_white_diffimg.fits', diff, hdiff, clobber=True)
+        pyfits.writeto(path+'master_white_diffimg.fits', diff, hdiff, clobber=True)
 
     if timit:
         print('Total time elapsed: '+str(np.round(time.time() - start_time,1))+' seconds')
@@ -248,7 +248,10 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
         print('Extracting stellar spectrum '+str(i+1)+'/'+str(len(imglist)))
 
         #do some housekeeping with filenames
-        dum = filename.split('/')
+        #windows
+        dum = filename.split('\\')
+        #linux
+        #dum = filename.split('/')
         dum2 = dum[-1].split('.')
         obsname = dum2[0]
               
