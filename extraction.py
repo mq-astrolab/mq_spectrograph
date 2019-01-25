@@ -49,6 +49,8 @@ def quick_extract(stripes, err_stripes, slit_height=25, verbose=False, timit=Fal
     pixnum = {}
     
     for ord in sorted(stripes.keys()):
+        if ord == 'order_01':
+            continue
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -347,6 +349,8 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
 
     # loop over all orders
     for ord in sorted(stripes.keys()):
+        if ord == 'order_01':
+            continue
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -543,6 +547,7 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
                     err[ord].append(np.sqrt(v))
 
 
+
         # fix for order_01
         if ord == 'order_01':
             for fib in sorted(flux[ord].keys()):
@@ -663,16 +668,17 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
 
         # exclude the range of order_01 (m = 65) that does fall off the chip!
         goodrange = np.arange(npix)
-        if simu and ord == 'order_01':
-            # goodrange = goodrange[fibparms[ord]['fibre_21']['onchip']]
-            goodrange = np.arange(1301, 4096)
-            for j in range(1301):
-                pix[ord].append(ordnum + str(j + 1).zfill(4))
-        if not simu and ord == 'order_01':
-            # goodrange = goodrange[fibparms[ord]['fibre_21']['onchip']]
-            goodrange = np.arange(900, 4112)
-            for j in range(900):
-                pix[ord].append(ordnum + str(j + 1).zfill(4))
+       # comment out for MTLS
+       # if simu and ord == 'order_01':
+       #     # goodrange = goodrange[fibparms[ord]['fibre_21']['onchip']]
+       #     goodrange = np.arange(1301, 4096)
+       #     for j in range(1301):
+       #         pix[ord].append(ordnum + str(j + 1).zfill(4))
+       # if not simu and ord == 'order_01':
+       #     # goodrange = goodrange[fibparms[ord]['fibre_21']['onchip']]
+       #     goodrange = np.arange(900, 4112)
+       #     for j in range(900):
+       #         pix[ord].append(ordnum + str(j + 1).zfill(4))
 
 
         for i in goodrange:
@@ -820,19 +826,19 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
                 else:
                     err[ord].append(np.sqrt(v))
 
-   # ignoring for MLTS
-        # fix for order_01
-   #     if ord == 'order_01':
-   #         if simu:
-   #             for fib in sorted(flux[ord].keys()):
-   #                 #testline
-   #                 print((np.squeeze(flux['order_01'][fib])).shape)
-   #                 flux['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(flux['order_01'][fib])]
-   #                 err['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(err['order_01'][fib])]
-   #         else:
-   #             for fib in sorted(flux[ord].keys()):
-   #                 flux['order_01'][fib] = np.r_[np.repeat(0., 900), flux['order_01'][fib]]
-   #                 err['order_01'][fib] = np.r_[np.repeat(0., 900), err['order_01'][fib]]
+    #comment out for MTLS
+         #fix for order_01
+        #if ord == 'order_01':
+        #    if simu:
+        #        for fib in sorted(flux[ord].keys()):
+        #            #testline
+        #            print((np.squeeze(flux['order_01'][fib])).shape)
+        #            flux['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(flux['order_01'][fib])]
+        #            err['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(err['order_01'][fib])]
+        #    else:
+        #        for fib in sorted(flux[ord].keys()):
+        #            flux['order_01'][fib] = np.r_[np.repeat(0., 900), flux['order_01'][fib]]
+        #            err['order_01'][fib] = np.r_[np.repeat(0., 900), err['order_01'][fib]]
 
         if timit:
             print('Time taken for extraction of ' + ord + ': ' + str(time.time() - order_start_time) + ' seconds')

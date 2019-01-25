@@ -854,7 +854,7 @@ def get_simu_dispsol(fibre=None, path='/Users/christoph/OneDrive - UNSW/dispsol/
     xx = np.arange(npix)
      
     #this is so as to match the order number with the physical order number (66 <= m <= 108)
-    # order01 corresponds to m=66
+    # order_01 corresponds to m=66
     # order43 corresponds to m=108
     wl = {}
     for o in orders:
