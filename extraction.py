@@ -49,6 +49,8 @@ def quick_extract(stripes, err_stripes, slit_height=25, verbose=False, timit=Fal
     pixnum = {}
     
     for ord in sorted(stripes.keys()):
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -116,6 +118,8 @@ def quick_extract_from_indices(img, err_img, stripe_indices, slit_height=25, ver
     pixnum = {}
     
     for ord in sorted(stripe_indices.keys()):
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -210,6 +214,8 @@ def collapse_extract(stripes, err_stripes, tramlines, slit_height=25, verbose=Fa
     
 #     for ord in stripes.keys():
     for ord in tramlines.keys():
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -265,6 +271,8 @@ def collapse_extract_from_indices(img, err_img, stripe_indices, tramlines, slit_
     
 #     for ord in stripes.keys():
     for ord in tramlines.keys():
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -348,6 +356,8 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
 
     # loop over all orders
     for ord in sorted(stripes.iterkeys()):
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -594,7 +604,7 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
 
     # read in polynomial coefficients of best-fit individual-fibre-profile parameters
     if simu:
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/sim/fibparms_by_ord.npy').item()
+        fibparms = np.load('/Users/Jacob/Desktop/mq_spectrograph_local/data/fibparms_by_ord.npy').item() # changed path to my directory
     else:
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/first_real_veloce_test_fps.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/from_master_white_40orders.npy').item()
@@ -608,6 +618,8 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
 
     # loop over all orders
     for ord in sorted(stripe_indices.iterkeys()):
+        if ord == 'order_01': # added this in to skip over order_01
+            continue # need to find the right 'skip' term??
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -959,8 +971,8 @@ def extract_spectrum(stripes, err_stripes, ron_stripes, method='optimal', indivi
                 print('ERROR: file type for output file not recognized!')
                 filetype = raw_input('Which file type do you want to use (valid options are ["fits" / "dict" / "both"] )?') 
             if filetype in ['fits', 'both']:
-                fluxarr = np.zeros((len(pix), len(pix['order_01'])))
-                errarr = np.zeros((len(pix), len(pix['order_01'])))
+                fluxarr = np.zeros((len(pix), len(pix['order_02']))) # changed to order_02
+                errarr = np.zeros((len(pix), len(pix['order_02']))) # changed to order_02
                 for i,o in enumerate(sorted(pix.keys())):
                     fluxarr[i,:] = flux[o]
                     errarr[i,:] = err[o]
@@ -1126,15 +1138,15 @@ def extract_spectrum_from_indices(img, err_img, stripe_indices, method='optimal'
                 filetype = raw_input('Which file type do you want to use (valid options are ["fits" / "dict" / "both"] )?') 
             if filetype in ['fits', 'both']:
                 if method.lower() == 'optimal' and submethod == '3a':      # ie for individual-fibre extraction
-                    fluxarr = np.zeros((len(pix), len(flux['order_01']), len(pix['order_01'])))
-                    errarr = np.zeros((len(pix), len(flux['order_01']), len(pix['order_01'])))
+                    fluxarr = np.zeros((len(pix), len(flux['order_02']), len(pix['order_02']))) # changed to order_02
+                    errarr = np.zeros((len(pix), len(flux['order_02']), len(pix['order_02']))) # changed to order_02
                     for i,o in enumerate(sorted(pix.keys())):
-                        for j,fib in enumerate(sorted(flux[o].keys())):
+                        for j, fib in enumerate(sorted(flux[o].keys())):
                             fluxarr[i,j,:] = flux[o][fib]
                             errarr[i,j,:] = err[o][fib]
                 else:
-                    fluxarr = np.zeros((len(pix), len(pix['order_01'])))
-                    errarr = np.zeros((len(pix), len(pix['order_01'])))
+                    fluxarr = np.zeros((len(pix), len(pix['order_02']))) # changed to order_02
+                    errarr = np.zeros((len(pix), len(pix['order_02']))) # changed to order_02
                     for i,o in enumerate(sorted(pix.keys())):
                         fluxarr[i,:] = flux[o]
                         errarr[i,:] = err[o]
@@ -1148,7 +1160,7 @@ def extract_spectrum_from_indices(img, err_img, stripe_indices, method='optimal'
                 elif os.path.exists(path+obsname+'_BD.fits'):
                     h = pyfits.getheader(path+obsname+'_BD.fits')
                 else:
-                    h = pyfits.getheader(path+obsname+'.fits')   
+                    h = pyfits.getheader(path+obsname+'.fits')
                 #update the header and write to file
                 h['HISTORY'] = '   EXTRACTED SPECTRUM - created '+time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())+' (GMT)'
                 h['METHOD'] = (method, 'extraction method used')

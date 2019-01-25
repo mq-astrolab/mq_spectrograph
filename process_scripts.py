@@ -253,7 +253,7 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
         obsname = dum2[0]
               
         # (1) call routine that does all the bias and dark correction stuff and proper error treatment
-        img = correct_for_bias_and_dark_from_filename(filename, MB, MD, gain=gain, scalable=scalable, savefile=saveall, path=path, timit=True)   #[e-]
+        img = correct_for_bias_and_dark_from_filename(filename, MB, MD, gain=gain, scalable=scalable, savefile=saveall, path=path, timit=True, simu=True)   #[e-] # added simu=True
         #err = np.sqrt(img + ronmask*ronmask)   # [e-]
         #TEMPFIX:
         err_img = np.sqrt(np.clip(img,0,None) + ronmask*ronmask)   # [e-]
@@ -285,8 +285,8 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
         if from_indices:
             pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method='quick', slit_height=slit_height, RON=ronmask, savefile=True,
                                                          filetype='fits', obsname=obsname, path=path, timit=True)
-            pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method=ext_method, slope=slope, offset=offset, fibs=fibs, slit_height=slit_height, 
-                                                         RON=ronmask, savefile=True, filetype='fits', obsname=obsname, path=path, timit=True)
+            pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method=ext_method, slope=slope, offset=offset, fibs=fibs, slit_height=slit_height,
+                                                         RON=ronmask, savefile=True, filetype='fits', obsname=obsname, path=path, timit=True, simu=True, fibpos='05') # added simu=True and fibpos='05'
         else:
             pix2,flux2,err2 = extract_spectrum(stripes, err_stripes=err_stripes, ron_stripes=ron_stripes, method=ext_method, slope=slope, offset=offset, fibs=fibs, 
                                                slit_height=slit_height, RON=ronmask, savefile=False, filetype='fits', obsname=obsname, path=path, timit=True)
