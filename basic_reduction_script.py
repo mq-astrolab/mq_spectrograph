@@ -109,10 +109,11 @@ pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='qui
                                              savefile=True, filetype='fits', obsname='master_white', path=path,
                                              timit=True)
 ## optimal method of extraction
-pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='optimal', slope=False, offset=False,
-                                             fibs='single', fibpos='05', slit_height=7, RON=ronmask, simu=True,
-                                             savefile=True, filetype='fits', obsname='master_white', path=path,
-                                             timit=True)
+## commented out because we are moving forward using the quick method
+# pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='optimal', slope=False, offset=False,
+#                                             fibs='single', fibpos='05', slit_height=7, RON=ronmask, simu=True,
+#                                             savefile=True, filetype='fits', obsname='master_white', path=path,
+#                                             timit=True)
 
 #######################################################################################################################
 
@@ -147,10 +148,16 @@ pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='opt
 
 #######################################################################################################################
 
-# (4) PROCESS SCIENCE IMAGES
+## (4) PROCESS SCIENCE IMAGES
+## quick extraction method
 dum = process_science_images(stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB,
-                             ronmask=ronmask, MD=MDS, scalable=True, saveall=False, path=path, ext_method='optimal',
+                             ronmask=ronmask, MD=MDS, scalable=True, saveall=False, path=path, ext_method='quick',
                              offset='True', slope='True', fibs='single', from_indices=True, timit=True)
+
+## optimal extraction method - DOESN'T WORK AS YET
+# dum = process_science_images(stellar_list, P_id, mask=mask, sampling_size=25, slit_height=7, gain=gain, MB=MB,
+#                             ronmask=ronmask, MD=MDS, scalable=True, saveall=False, path=path, ext_method='optimal',
+#                             offset='True', slope='True', fibs='single', from_indices=True, timit=True)
 
 #######################################################################################################################
 
