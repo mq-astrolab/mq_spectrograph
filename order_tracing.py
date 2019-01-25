@@ -552,8 +552,8 @@ def flatten_stripes(stripes, slit_height=25):
     # loop over all orders
     for ord in stripes.keys():
         # added to skip order_01
-        if ord == 'order_01':
-            continue
+        #if ord == 'order_01':
+            #continue
         #print(ord)
         stripe = stripes[ord]
         sc,sr = flatten_single_stripe(stripe,slit_height=slit_height)

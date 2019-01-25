@@ -49,8 +49,8 @@ def quick_extract(stripes, err_stripes, slit_height=25, verbose=False, timit=Fal
     pixnum = {}
     
     for ord in sorted(stripes.keys()):
-        if ord == 'order_01':
-            continue
+        #if ord == 'order_01':
+            #continue
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -349,8 +349,8 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
 
     # loop over all orders
     for ord in sorted(stripes.keys()):
-        if ord == 'order_01':
-            continue
+        #if ord == 'order_01':
+            #continue
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
