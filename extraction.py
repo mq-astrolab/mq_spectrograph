@@ -820,17 +820,19 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
                 else:
                     err[ord].append(np.sqrt(v))
 
-
+   # ignoring for MLTS
         # fix for order_01
-        if ord == 'order_01':
-            if simu:
-                for fib in sorted(flux[ord].keys()):
-                    flux['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(flux['order_01'][fib])]
-                    err['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(err['order_01'][fib])]
-            else:
-                for fib in sorted(flux[ord].keys()):
-                    flux['order_01'][fib] = np.r_[np.repeat(0., 900), flux['order_01'][fib]]
-                    err['order_01'][fib] = np.r_[np.repeat(0., 900), err['order_01'][fib]]
+   #     if ord == 'order_01':
+   #         if simu:
+   #             for fib in sorted(flux[ord].keys()):
+   #                 #testline
+   #                 print((np.squeeze(flux['order_01'][fib])).shape)
+   #                 flux['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(flux['order_01'][fib])]
+   #                 err['order_01'][fib] = np.r_[np.repeat(0., 1301), np.squeeze(err['order_01'][fib])]
+   #         else:
+   #             for fib in sorted(flux[ord].keys()):
+   #                 flux['order_01'][fib] = np.r_[np.repeat(0., 900), flux['order_01'][fib]]
+   #                 err['order_01'][fib] = np.r_[np.repeat(0., 900), err['order_01'][fib]]
 
         if timit:
             print('Time taken for extraction of ' + ord + ': ' + str(time.time() - order_start_time) + ' seconds')
@@ -1088,7 +1090,7 @@ def extract_spectrum_from_indices(img, err_img, stripe_indices, method='optimal'
     elif method.lower() == 'optimal':
         pix,flux,err = optimal_extraction_from_indices(img, stripe_indices, err_img=err_img, RON=RON, slit_height=slit_height, individual_fibres=individual_fibres,
                                                        combined_profiles=combined_profiles, integrate_profiles=integrate_profiles, slope=slope, offset=offset, fibs=fibs, 
-                                                       fibpos=fibpos, simu=simu, timit=timit, debug_level=debug_level)
+                                                       fibpos=fibpos, simu=True, timit=timit, debug_level=debug_level)
     else:
         print('ERROR: Nightmare! That should never happen  --  must be an error in the Matrix...')
         return    

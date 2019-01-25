@@ -286,10 +286,10 @@ def process_science_images(imglist, P_id, mask=None, sampling_size=25, slit_heig
 
         # (6) perform extraction of 1-dim spectrum
         if from_indices:
-            pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method='quick', slit_height=slit_height, RON=ronmask, savefile=True,
+            pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method='quick', slit_height=slit_height, RON=ronmask, simu=True, savefile=True,
                                                          filetype='fits', obsname=obsname, path=path, timit=True)
             pix,flux,err = extract_spectrum_from_indices(final_img, err_img, stripe_indices, method=ext_method, slope=slope, offset=offset, fibs=fibs, slit_height=slit_height, 
-                                                         RON=ronmask, savefile=True, filetype='fits', obsname=obsname, path=path, timit=True)
+                                                         RON=ronmask, simu=True, savefile=True, filetype='fits', obsname=obsname, path=path, timit=True)
         else:
             pix2,flux2,err2 = extract_spectrum(stripes, err_stripes=err_stripes, ron_stripes=ron_stripes, method=ext_method, slope=slope, offset=offset, fibs=fibs, 
                                                slit_height=slit_height, RON=ronmask, savefile=False, filetype='fits', obsname=obsname, path=path, timit=True)
