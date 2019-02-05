@@ -50,7 +50,7 @@ def quick_extract(stripes, err_stripes, slit_height=25, verbose=False, timit=Fal
     
     for ord in sorted(stripes.keys()):
         if ord == 'order_01': # added this in to skip over order_01
-            continue # need to find the right 'skip' term??
+            continue # skips order_01
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -215,7 +215,7 @@ def collapse_extract(stripes, err_stripes, tramlines, slit_height=25, verbose=Fa
 #     for ord in stripes.keys():
     for ord in tramlines.keys():
         if ord == 'order_01': # added this in to skip over order_01
-            continue # need to find the right 'skip' term??
+            continue # skips order_01
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -272,7 +272,7 @@ def collapse_extract_from_indices(img, err_img, stripe_indices, tramlines, slit_
 #     for ord in stripes.keys():
     for ord in tramlines.keys():
         if ord == 'order_01': # added this in to skip over order_01
-            continue # need to find the right 'skip' term??
+            continue # skips order_01
         if verbose:
             print('OK, now processing order '+str(ord)+'...')
         if timit:
@@ -343,12 +343,12 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
 
     # read in polynomial coefficients of best-fit individual-fibre-profile parameters
     if simu:
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/sim/fibparms_by_ord.npy').item()
+        fibparms = np.load('/Users/Jacob/Desktop/mq_spectrograph_local/data/fibparms_by_ord.npy').item()  # changed path to my directory
     else:
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/first_real_veloce_test_fps.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/from_master_white_40orders.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20180925.npy').item()
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20181107.npy').item()
+        fibparms = np.load('/Users/Jacob/Desktop/mq_spectrograph_local/data/fibparms_by_ord.npy').item()  # changed path to my directory, unsure if right file but other file was Christoph's
 
     flux = {}
     err = {}
@@ -357,7 +357,7 @@ def optimal_extraction(stripes, err_stripes=None, ron_stripes=None, RON=0., slit
     # loop over all orders
     for ord in sorted(stripes.iterkeys()):
         if ord == 'order_01': # added this in to skip over order_01
-            continue # need to find the right 'skip' term??
+            continue # skips order_01
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:
@@ -610,7 +610,7 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/real/from_master_white_40orders.npy').item()
         # fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20180925.npy').item()
         print('Oha! Loading NEWest fibre profile parameters...')
-        fibparms = np.load('/Users/christoph/OneDrive - UNSW/fibre_profiles/fibre_profile_fits_20181107.npy').item()
+        fibparms = np.load('/Users/Jacob/Desktop/mq_spectrograph_local/data/fibparms_by_ord.npy').item()  # changed path to my directory, unsure if right file but other file was Christoph's
 
     flux = {}
     err = {}
@@ -619,7 +619,7 @@ def optimal_extraction_from_indices(img, stripe_indices, err_img=None, RON=0., s
     # loop over all orders
     for ord in sorted(stripe_indices.iterkeys()):
         if ord == 'order_01': # added this in to skip over order_01
-            continue # need to find the right 'skip' term??
+            continue # skips order_01
         if debug_level > 0:
             print('OK, now processing order: ' + ordnum)
         if timit:

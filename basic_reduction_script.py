@@ -12,17 +12,27 @@ import numpy as np
 import datetime
 import copy
 import matplotlib.pyplot as plt
+from IPython.display import Image
+import os
 
 from helper_functions import short_filenames
 from calibration import get_bias_and_readnoise_from_bias_frames, make_offmask_and_ronmask, make_master_bias_from_coeffs, make_master_dark, correct_orientation, crop_overscan_region
-from order_tracing import find_stripes, make_P_id, make_mask_dict, extract_stripes #, find_tramlines
+from order_tracing import find_stripes, make_P_id, make_mask_dict, extract_stripes # find_tramlines
 from spatial_profiles import fit_profiles, fit_profiles_from_indices
 from extraction import *
 from process_scripts import process_whites, process_science_images
 
 ## path to raw fits files
 ## for our Echelle++ test, we have 3 flats, 6 stellar, 1 laser
-path = '/Users/Jacob/Desktop/data_for_mq/'
+path = '/Users/Jacob/Desktop/data_for_mq/' ## THIS NEEDS TO CHANGE BETWEEN USERS
+
+## check to see if these directories exist, if not, create them - will be used to save generated plots to file
+if os.path.isdir(path + '/plots') == False:
+    os.mkdir(path + 'plots')
+save_plots = path + 'plots/' # added so that we can save the plots to file
+if os.path.isdir(save_plots + 'order_tracing_plots/') == False:
+    os.mkdir(save_plots + 'order_tracing_plots/')
+save_plots = save_plots + 'order_tracing_plots/'
 
 #######################################################################################################################
 
@@ -30,7 +40,7 @@ path = '/Users/Jacob/Desktop/data_for_mq/'
 # bias_list = glob.glob(path + 'Bias*.fits')
 # dark_list = glob.glob(path + 'Dark*.fits')
 white_list = glob.glob(path + '*flat*.fits')
-stellar_list = glob.glob(path + '*solar*.fits')
+stellar_list = glob.glob(path + 'solar*.fits')
 laser_list = glob.glob(path + '*laser*.fits')
 
 ## generates a dummy image of the first .fit file from the stellar_list and returns the shape of that image
@@ -89,11 +99,13 @@ del dumimg
 MW,err_MW = process_whites(white_list, MB=MB, ronmask=ronmask, MD=MDS, gain=gain, scalable=True, fancy=False,
                            clip=5., savefile=True, saveall=False, diffimg=False, path=path, debug_level=1, timit=False)
 
+np.savetxt('MW', np.array(MW), fmt='%s') # added to use in poly_diag_plot.py
+
 #######################################################################################################################
 
 ## (3) ORDER TRACING - find and trace the orders/stripes in a flat field Echelle spectrum
 ## find orders roughly
-P,tempmask = find_stripes(MW, deg_polynomial=2, min_peak=0.25, gauss_filter_sigma=3., simu=True, debug_level=2)
+P,tempmask = find_stripes(MW, deg_polynomial=2, min_peak=0.25, gauss_filter_sigma=3., simu=True, debug_level=2, save_plots=save_plots) # edited to savefile
 
 ## assign physical diffraction order numbers to order-fit polynomials and bad-region masks
 ## (this is only a dummy function for now)
@@ -108,12 +120,17 @@ MW_stripes,MW_indices = extract_stripes(MW, P_id, return_indices=True, slit_heig
 pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='quick', slit_height=7, RON=ronmask,
                                              savefile=True, filetype='fits', obsname='master_white', path=path,
                                              timit=True)
+
+np.save(path + 'flux.npy', flux) # added so the flux can be used in plot_script.py
+
 ## optimal method of extraction
 ## commented out because we are moving forward using the quick method
 # pix,flux,err = extract_spectrum_from_indices(MW, err_MW, MW_indices, method='optimal', slope=False, offset=False,
 #                                             fibs='single', fibpos='05', slit_height=7, RON=ronmask, simu=True,
 #                                             savefile=True, filetype='fits', obsname='master_white', path=path,
 #                                             timit=True)
+
+#np.save(path + 'flux.npy', flux) # added so the flux can be used in plot_script.py
 
 #######################################################################################################################
 
