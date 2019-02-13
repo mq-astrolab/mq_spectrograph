@@ -1152,10 +1152,10 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         exptime_comment = img_header.comments['exptime']
         # comment_header = img_header['comment']
         # comment_comment = img_header.comments['comment']
-        hier_spec_header = img_header['hierarch spectrograph']
-        hier_spec_comment = img_header.comments['hierarch spectrograph']
-        fib_header = img_header['fiber_1']
-        fib_comment = img_header.comments['fiber_1']
+        #hier_spec_header = img_header['hierarch spectrograph']
+        #hier_spec_comment = img_header.comments['hierarch spectrograph']
+        #fib_header = img_header['fiber_1']
+        #fib_comment = img_header.comments['fiber_1']
         ## write to file
         outfn = path + 'corrected_' + fn.split('/')[-1]
         pyfits.writeto(outfn, img, clobber=True)
@@ -1165,8 +1165,8 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         pyfits.setval(outfn, 'EXTEND', comment=extend_comment)
         pyfits.setval(outfn, 'EXPTIME', value=exptime_header, comment=exptime_comment)
         # pyfits.setval(outfn, 'COMMENT', value=comment_header, comment=comment_comment)
-        pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
-        pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
+        #pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
+        #pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
         pyfits.setval(outfn, 'HISTORY',
                       value='   CORRECTLY ORIENTED frame - created ' + time.strftime("%Y-%m-%d %H:%M:%S",
                                                                                      time.gmtime()) + ' (GMT)')
@@ -1184,10 +1184,10 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         exptime_comment = img_header.comments['exptime']
         # comment_header = img_header['comment']
         # comment_comment = img_header.comments['comment']
-        hier_spec_header = img_header['hierarch spectrograph']
-        hier_spec_comment = img_header.comments['hierarch spectrograph']
-        fib_header = img_header['fiber_1']
-        fib_comment = img_header.comments['fiber_1']
+        #hier_spec_header = img_header['hierarch spectrograph']
+        #hier_spec_comment = img_header.comments['hierarch spectrograph']
+        #fib_header = img_header['fiber_1']
+        #fib_comment = img_header.comments['fiber_1']
         ## write to file
         outfn = path + 'corrected_' + fn.split('/')[-1]
         pyfits.writeto(outfn, img, clobber=True)
@@ -1197,8 +1197,8 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         pyfits.setval(outfn, 'EXTEND', comment=extend_comment)
         pyfits.setval(outfn, 'EXPTIME', value=exptime_header, comment=exptime_comment)
         # pyfits.setval(outfn, 'COMMENT', value=comment_header, comment=comment_comment)
-        pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
-        pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
+        #pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
+        #pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
         pyfits.setval(outfn, 'HISTORY',
                       value='   CORRECTLY ORIENTED frame - created ' + time.strftime("%Y-%m-%d %H:%M:%S",
                                                                                      time.gmtime()) + ' (GMT)')
@@ -1216,10 +1216,10 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         exptime_comment = img_header.comments['exptime']
         # comment_header = img_header['comment']
         # comment_comment = img_header.comments['comment']
-        hier_spec_header = img_header['hierarch spectrograph']
-        hier_spec_comment = img_header.comments['hierarch spectrograph']
-        fib_header = img_header['fiber_1']
-        fib_comment = img_header.comments['fiber_1']
+        #hier_spec_header = img_header['hierarch spectrograph']
+        #hier_spec_comment = img_header.comments['hierarch spectrograph']
+        #fib_header = img_header['fiber_1']
+        #fib_comment = img_header.comments['fiber_1']
         ## write to file
         outfn = path + 'corrected_' + fn.split('/')[-1]
         pyfits.writeto(outfn, img, clobber=True)
@@ -1229,8 +1229,8 @@ def orientation_test_unautomated(stellar_list, white_list, laser_list, path=None
         pyfits.setval(outfn, 'EXTEND', comment=extend_comment)
         pyfits.setval(outfn, 'EXPTIME', value=exptime_header, comment=exptime_comment)
         # pyfits.setval(outfn, 'COMMENT', value=comment_header, comment=comment_comment)
-        pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
-        pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
+        #pyfits.setval(outfn, 'HIERARCH SPECTROGRAPH', value=hier_spec_header, comment=hier_spec_comment)
+        #pyfits.setval(outfn, 'FIBER_1', value=fib_header, comment=fib_comment)
         pyfits.setval(outfn, 'HISTORY',
                       value='   CORRECTLY ORIENTED frame - created ' + time.strftime("%Y-%m-%d %H:%M:%S",
                                                                                      time.gmtime()) + ' (GMT)')
